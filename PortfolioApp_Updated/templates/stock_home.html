@@ -1,0 +1,290 @@
+
+{%extends 'base.html'%}
+{%block title%}Portfolio Analysis{%endblock%}
+{%block head%}{%endblock%}
+{%block body%}
+{% for category, message in get_flashed_messages(with_categories=true) %}
+
+<div class="title"><p style="color:white; font-size: 80px;  text-align: center;">Portfolio Analysis</p></div>
+    <div class="main">
+        <!-- <div class="left"> -->
+
+            <div class="selection" id="selection">
+
+
+                <li class="{{ category }}"  style="text-align: center;font-size: 20px;color:darkblue;">{{ message }}</li>
+
+                <form action="http://127.0.0.1:5000/portfolio/" method="post" name="myform">
+
+                  <p>
+
+                      <i>Welcome</i> {{ name }}!!
+                      <br>
+                      Your access level is <i>{{ role }}</i>
+
+
+
+                </p>
+                <br>
+
+
+
+
+                    <h3>
+                        1 : Get My Portfolio:
+                    </h3>
+
+                    <label class="reminderone" style="color: darkblue;">
+
+                    * Already have a portfolio analysis saved ? <br> You may process 1, else please proceed with 2,3,4
+                    </label>
+                    <br>
+                    <br>
+
+                    <select class='saved_portfolio_names' name="saved_portfolio_names" id="saved_portfolio_names" style="width: 300px; height: 40px;" >
+                        <!--for now retrieves all portfolio names, if we were to retrieve by user id, we have to add additional where condition with user id -->
+
+                        <option selected="selected">--Please Select--</option>
+                        {%for p in portfolio%}
+                        <option name="user_portfolio"  id="user_portfolio" value="{{p.portfolio_name}}"  >{{p.portfolio_name}}</option>
+                        {%endfor%}-->
+
+                    </select>
+                    <br>
+                  <br>
+                    <br>
+                    <button class="get_my_portfolios" name="get_my_portfolios" id= "get_my_portfolios" value="get_my_portfolios">Get My Portfolios</button>
+                    <br>
+
+
+                    <br>
+                    <h3>2 . Search Portfolio</h3>
+
+
+                    <label class="Ticket_1" style="font-size: 16px">Ticker 1: </label>
+                    <br>
+                    <br>
+                    <select class='ticket_name1' name="ticket1" id="ticket1" style="width: 300px; height: 40px;font-size: 16px">
+
+                        {%for ticket in tickets%}
+                        <option name="ticketname1" style="width: 300px; height: 40px;">{{ticket}}</option>
+                        {%endfor%}
+
+                    </select>
+                    <br>
+                    <br>
+                    <label class="Ticket_2" style="font-size: 16px">Ticker 2: </label>
+                    <br>
+                    <br>
+                    <label class="reminderone" style="color: brown;">
+                        * Please select a different from ticket 1
+                    </label>
+                    <br>
+                    <br>
+                    <select class='ticket_name2' name="ticket2" id="ticket2" style="width: 300px; height: 40px;font-size: 16px">
+                        {%for ticket in tickets%}
+                        <option name="ticketname2" id="ticketname2">{{ticket}}</option>
+                        {%endfor%}
+                    </select>
+                    <br>
+                    <br>
+                    <label class="Ticket_3" style="font-size: 16px">Ticker 3: </label>
+                    <br>
+                    <br>
+                    <label class="remindertwo" style="color:brown;">
+                        * Please select a different from ticket 1 and 2
+                    </label> 
+                    <br>
+                    <br>
+                    <select class='ticket_name3' name="ticket3" id="ticket3" style="width: 300px; height: 40px;font-size: 16px">
+                        {%for ticket in tickets%}
+                        <option name="ticketname3">{{ticket}}</option>
+                        {%endfor%}
+                    </select>
+                    <br><br>
+                    <h3>3 . Portfolio selection for diversfication </h3>
+                    <div class="radio" id="radio" >
+                        <input type="radio" name="portfolio" id="portfolio" value="Do not diversify">Do not diversify
+                        <br>
+                        <br>
+                        <input type="radio" name="portfolio" id="portfolio" value="Medium diversify">Medium diversify
+                        <br>
+                        <br>
+                        <input type="radio" name="portfolio" id="portfolio" value="Optimize">Optimize
+                        <br>
+                        <br>
+                        <input type="radio" name="portfolio" id="portfolio" value="Manage risk">Manage risk
+        
+                    </div>
+                    <br>
+                    <label style="font-size: 20px; letter-spacing: 1.5px">
+                        Enter start time for portfolio: 
+                    </label>
+                    <br>
+                    <br>
+                    <input type="date" id="date" name="date" value="2018-03-18" class="date">
+                    <!-- <input type="hidden" id="hidden" name="hidden" value=""> -->
+                    <br>
+                    <br>
+                    <button class="submit" name="search details" value="search details" >Get Portfolio</button>
+                    <br>
+
+                    <br>
+                    <label>Portfolio name: </label>
+                    <br>
+                    <br>
+                    <input type="text" class="portfolio_name" id="portfolio_name" name="portfolio_name">
+                    <br>
+                    <br>
+                    <button class='save_portfolio'type="submit" name="Save portfolio" value="Save portfolio" id="save_portfolio">Save portfolio</button>
+                    <br>
+                     <br>
+                    <h3 style="letter-spacing: 1.5px;">
+                        5 : Update Portfolio:
+                    </h3>
+                    <br>
+                    <br>
+                    <select class='update_portfolio_names' name="update_portfolio_names" id="update_portfolio_names" style="width: 300px; height: 40px;" >
+                        <!--for now retrieves all portfolio names, if we were to retrieve by user id, we have to add additional where condition with user id -->
+
+                        <option selected="selected" style="width: 300px; height: 40px;">--Please Select--</option>
+                        {%for p in portfolio%}
+                        <option  style="width: 300px; height: 70px;" value="{{p.portfolio_name}}" style="width: 300px; height: 70px;">{{p.portfolio_name}}</option>
+                        {%endfor%}
+
+                    </select>
+                    <br>
+                    <br>
+                    <select class='diversification_method' name="diversification_method" style="width: 300px; height: 40px;" >
+                        <!--for now retrieves all portfolio names, if we were to retrieve by user id, we have to add additional where condition with user id -->
+
+                        <option style="width: 300px; height: 40px;"  selected="selected">--Please Select--</option>
+
+                        <option  value = "Do not diversify" style="width: 300px; height: 70px;">Do not diversify</option>
+                        <option  value = "Medium diversify" style="width: 300px; height: 70px;">Medium diversify</option>
+                        <option  value = "Optimize" style="width: 300px; height: 70px;">Optimize</option>
+                        <option  value = "Manage risk" style="width: 300px; height: 70px;">Manage risk</option>
+
+                    </select>
+                    <br>
+                     <br>
+                    <input type="date" id="update_date" name="update_date" value="2018-03-18" class="date">
+                    <!-- <input type="hidden" id="hidden" name="hidden" value=""> -->
+                    <br>
+
+                     <br>
+                     <button class="submit" name="update_portfolio" id="update_portfolio" value="Update Portfolio">Update Portfolio</button>
+                    <br>
+                     <br>
+                    <h3 style="letter-spacing: 1.5px;">
+                        6 : Delete Portfolio:
+                    </h3>
+
+                     <br>
+                    <select class='delete_portfolio_names' name="delete_portfolio_names" id="delete_portfolio_names" style="width: 300px; height: 40px;" >
+                        <!--for now retrieves all portfolio names, if we were to retrieve by user id, we have to add additional where condition with user id -->
+
+                        <option selected="selected" style="width: 300px; height: 40px;">--Please Select--</option>
+                        {%for p in portfolio%}
+                        <option  style="width: 300px; height: 70px;" value="{{p.portfolio_name}}" style="width: 300px; height: 70px;">{{p.portfolio_name}}</option>
+                        {%endfor%}
+
+                    </select>
+                    <br>
+
+
+                    <br>
+                     <button class="submit" name="delete_portfolio" id="delete_portfolio" value="Delete Portfolio">Delete Portfolio</button>
+                    <br>
+
+
+        
+                </form>
+
+                    <div class="volatility" name="volatility_radio_sub" style="float: right;letter-spacing: 1.5px;">
+
+                        <h2 style="letter-spacing: 1.5px">Please select options for viewing the volatility graph</h2>
+
+                        <h3>Daily Returns Vs Smoothened Daily Returns over 30 days</h3>
+                        <br>
+
+                         <button class="submit" name="plotchat" id="plotchat" value="Get Chart" onclick="show()">Get Chart</button>
+
+                        <br>
+                        <br>
+                        <script>
+                        function show() {
+
+
+                               document.getElementById("img1").src = "/volatility_plot1.png"
+                               document.getElementById("img2").src = "/volatility_plot2.png"
+                               document.getElementById("img3").src = "/volatility_plot3.png"
+                           }
+
+
+                        </script>
+                                  <h4>Please selects the tickers first on left panel:</h4>
+                                   <img id ="img1"  alt=" ticker1">
+                                   <img id="img2" alt=" ticker2">
+                                   <img id="img3" alt=" ticker3">
+
+
+
+
+
+                        <br>
+                         <br>
+
+
+
+
+                        <br>
+
+
+                         <canvas id="bar_chart" width="600" height="300"></canvas>
+
+
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+                    </div>
+
+                    </form>
+
+                <!-- <form action="">
+                    <button id="check">see option details</button>
+                </form> -->
+                <!-- <div class="postbutton">
+                    <form action="http://127.0.0.1:5000/post_portfolio/" method="POST">
+                        <button class='postbutton' type="submit">Save portfolio analysis</button>
+                    </form>
+                </div> -->
+            </div>
+
+        <!-- </div>
+        <div class="right">
+            <form action="" method="post">
+                <div class="volatility_radio" name="volatility_radio">
+                    <h3>The options for volatility graph</h3>
+                    <input type="radio" name="volatility_radio_sub1",id='volatility_radio_sub1'>
+                    Daily
+                    <input type="radio" name="volatility_radio_sub1",id='volatility_radio_sub1'>
+                    Monthly
+                    
+                </div>
+            </form> -->
+
+
+
+        </div>
+    </div> 
+</div>
+
+<script>
+
+
+
+
+    
+</script>
+  {% endfor %}
+{%endblock%}

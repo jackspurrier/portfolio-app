@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{%endblock%}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+
+    #selection h2{
+        font-family: 'Roboto Light';
+        letter-spacing: 1.2px;
+        text-align: center;
+
+    }
+
+    #selection p{
+        font-family: 'Roboto Light';
+        letter-spacing: 1.2px;
+        text-align: right;
+        font-size:20px;
+    }
+
+
+    .h3{
+        font-family: 'Roboto Light';
+        letter-spacing: 1.5px
+    }
+
+
+    .container{
+        left: 10px;
+        width: 1400px;
+        margin: 0 auto;
+        background-color:powderblue;
+
+
+
+    }
+    .title{
+        margin-top: 0;
+        height: 100px;
+        background-image: linear-gradient(to right, #43C6DB, #00CED1);
+        
+    }
+
+    .main{
+
+        background: url('/static/unsplash_img.jpg') no-repeat;
+        position: relative;
+        background-repeat: no-repeat;
+        height: 2000px;
+        width: 900px
+        background-color: powderblue;
+        padding: 10px 10px 10px 30px;
+
+
+    }
+
+    /* .left{
+        width: 400px;
+        background-color: white;
+        float: left;
+    }
+    .right{
+        float: right;
+        width: 1000px;
+        height: 900px;
+        background-color:whitesmoke;
+        text-align: center;
+        
+    } */
+
+    .volatility{
+        width: 900px;
+        height: 1700px;
+        background-color:white;
+        position: relative;
+        bottom: 1700px;
+        right: 100px;
+        text-align: center;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+
+
+    }
+    /* .login_page{
+        height:40px;
+        align-content: center;
+    } */
+    /* .selection{
+        float: left;
+    } */
+    .UserID{
+        width: 290px;
+        height: 30px;
+
+    }
+    .ticket_name1,.ticket_name2, .ticket_name3{
+         width: 300px;
+        height: 45px;
+        font-size: 20px ;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+        /* position: relative; */
+    }
+    .portfolio_name{
+        width: 250px;
+        height: 30px;
+        font-size: 15px ;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+
+    }
+
+
+
+    .date,.update_date{
+        width: 200px;
+        height: 45px;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+    }
+    .ticket_reminder{
+        width: 100px;
+        height: 35px;
+        background-color: skyblue;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+
+    }
+
+    .table{
+        margin: 0 auto;
+}
+
+    .save_portfolio, .get_my_portfolios, .submit,.select_freq, .update_portfolio_names,
+    .user_portfolio_update,.diversification,.diversification_method,.update_portfolio_names, .saved_portfolio_names, .delete_portfolio_names,
+    .resetpwd
+    {
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 45px;
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+        height: 45px;
+        width: 160px;
+        background-color: white;
+        border: none;
+    }
+
+
+    .save_portfolio:hover, .get_my_portfolios:hover, .submit:hover, .resetpwd:hover{
+        background-color: #43C6DB;
+        box-shadow: 0px 16px 20px rgba(42, 209,236,0.4);
+        color: white;
+        transform: translateY(-8px);
+        font-weight: bold;
+    }
+    .radio{
+        letter-spacing: 1.5px;
+        font-family: 'Roboto Light';
+        padding: 2px;
+
+    }
+
+
+
+
+</style>
+<body>
+
+
+<div class="container" id="c">
+    {%block body%}{% endblock%}
+</div>
+</body>
+</html>
