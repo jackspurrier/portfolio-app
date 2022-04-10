@@ -4,4 +4,4 @@ WORKDIR /portfolio-app/PortfolioApp_Updated
 RUN pip install -r requirements.txt
 EXPOSE 8080
 ENTRYPOINT ["python"]
-CMD ["python", "app.py"]
+CMD ["app.py"]
